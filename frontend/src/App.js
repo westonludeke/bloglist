@@ -14,8 +14,8 @@ const App = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get('/api/blogs'); // Replace with your backend API URL
-      setBlogs(response.data);
+      const blogs = await blogService.getAll();
+      setBlogs(blogs);
     } catch (error) {
       console.error('Error fetching blogs:', error);
     }
@@ -26,8 +26,8 @@ const App = () => {
     const newBlog = { title, author, url, likes: 0 };
 
     try {
-      const response = await axios.post('/api/blogs', newBlog); // Replace with your backend API URL
-      setBlogs([...blogs, response.data]);
+      const addedBlog = await blogService.create(newBlog);
+      setBlogs([...blogs, addedBlog]);
       setTitle('');
       setAuthor('');
       setUrl('');
