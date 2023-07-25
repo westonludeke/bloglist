@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import blogService from '.services/blogService';
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
