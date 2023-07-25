@@ -1,7 +1,7 @@
-const express = require('express')
-const app = express()
-const cors = require('cors')
-const mongoose = require('mongoose')
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const mongoose = require('mongoose');
 
 const blogSchema = new mongoose.Schema({
   title: String,
@@ -10,9 +10,10 @@ const blogSchema = new mongoose.Schema({
   likes: Number
 })
 
-const Blog = mongoose.model('Blog', blogSchema)
+const Blog = mongoose.model('Blog', blogSchema);
 
-const mongoUrl = 'mongodb://localhost/bloglist'
+const mongoUrl = process.env.MONGO_DB_URL;
+mongoose.set('strictQuery', false);
 mongoose.connect(mongoUrl)
 
 app.use(cors())
