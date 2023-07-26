@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3003/api/blogs'; // Replace with your backend URL
+const baseUrl = '/api/blogs';
 
 const getAll = () => {
   return axios.get(baseUrl).then((response) => response.data);
