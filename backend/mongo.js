@@ -1,16 +1,17 @@
-const mongoose = require('mongoose')
+require('dotenv').config();
+const mongoose = require('mongoose');
 
 if (process.argv.length<3) {
   console.log('give password as argument')
   process.exit(1)
 }
 
-const password = process.argv[2]
+const password = process.argv[2];
 
 const url = process.env.MONGO_DB_URL;
 
-mongoose.set('strictQuery',false)
-mongoose.connect(url)
+mongoose.set('strictQuery',false);
+mongoose.connect(url)''
 
 const blogSchema = new mongoose.Schema({
   title: String,
