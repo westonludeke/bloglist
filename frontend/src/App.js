@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import blogService from '.services/blogService';
+import blogService from './services/blogService';
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
@@ -40,7 +40,7 @@ const App = () => {
     <div>
       <h1>Blog List</h1>
       <div>
-        <h2>Add a New Blog</h2>
+        <h3>Add a New Blog</h3>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Title:</label>
@@ -58,15 +58,15 @@ const App = () => {
         </form>
       </div>
       <div>
-        <h2>List of Blogs</h2>
+        <h3>List of Blogs:</h3>
         <ul>
           {blogs.map((blog) => (
-            <li key={blog._id}>
-              <h3>{blog.title}</h3>
+            <ul key={blog._id}>
+              <h4>{blog.title}</h4>
               <p>Author: {blog.author}</p>
               <p>URL: {blog.url}</p>
               <p>Likes: {blog.likes}</p>
-            </li>
+            </ul>
           ))}
         </ul>
       </div>
