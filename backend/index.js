@@ -46,8 +46,7 @@ app.delete('/api/blogs/:id', (request, response, next) => {
 
 app.put('/api/blogs/:id', (request, response, next) => {
   const { title, author, url, likes } = request.body;
-
-  Person.findByIdAndUpdate(
+  Blog.findByIdAndUpdate(
     request.params.id,
     { title, author, url, likes },
     { new: true, runValidators: true, context: 'query' }
