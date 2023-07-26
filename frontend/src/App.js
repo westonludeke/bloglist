@@ -62,10 +62,12 @@ const App = () => {
         <ul>
           {blogs.map((blog) => (
             <ul key={blog._id}>
-              <h4>{blog.title}</h4>
-              <p>Author: {blog.author}</p>
-              <p>URL: {blog.url}</p>
-              <p>Likes: {blog.likes}</p>
+              <p>
+                <strong>{blog.title}</strong><br />
+                by: {blog.author}<br />
+                {blog.url}<br />
+                Likes: {blog.likes}<br />
+              </p>
             </ul>
           ))}
         </ul>
