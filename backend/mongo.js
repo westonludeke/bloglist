@@ -29,7 +29,16 @@ const blog = new Blog({
   likes: 500
 });
 
-blog.save().then(result => {
-  console.log('blog saved!');
+Blog.find({}).then(result => {
+  console.log('blogroll: ');
+  result.forEach(blog => {
+    console.log(`"${blog.title}" by ${blog.author}`);
+  })
   mongoose.connection.close();
 });
+
+// blog.save().then(result => {
+//   console.log(`added "${blog.title}" by ${blog.author} to blog list`);
+//   mongoose.connection.close();
+// });
+
