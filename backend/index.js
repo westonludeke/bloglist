@@ -1,8 +1,9 @@
 require('dotenv').config();
+const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const Blog = require('./models/blog');
+const Blog = require('./modules/blog');
 
 const mongoUrl = process.env.MONGO_DB_URL;
 mongoose.set('strictQuery', false);
