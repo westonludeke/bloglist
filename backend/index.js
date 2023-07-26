@@ -20,6 +20,12 @@ app.get('/api/blogs', (request, response) => {
     })
 })
 
+app.get('/api/blogs/:id', (request, response) => {
+  Blog.findById(request.params.id).then(blog => {
+    response.json(blog)
+  })
+})
+
 app.post('/api/blogs', (request, response) => {
   const blog = new Blog(request.body)
 
