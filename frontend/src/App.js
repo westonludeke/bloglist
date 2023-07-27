@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import blogService from './services/blogService';
+import './index.css';
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
@@ -37,7 +38,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Blog List</h1>
       <div>
         <h3>Add a New Blog</h3>
