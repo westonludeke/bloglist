@@ -37,6 +37,14 @@ const App = () => {
     }
   };
 
+  // Function to add "https://" to URLs that don't have a prefix
+  const formatUrl = (url) => {
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      return 'https://' + url;
+    }
+    return url;
+  };
+
   return (
     <div className="container">
       <h1>Blog List</h1>
@@ -66,7 +74,7 @@ const App = () => {
               <p>
                 <strong>{blog.title}</strong><br />
                 by: {blog.author}<br />
-                {blog.url}<br />
+                <a href={formatUrl(blog.url)}>{blog.url}</a><br />
                 Likes: {blog.likes}<br />
               </p>
             </ul>
