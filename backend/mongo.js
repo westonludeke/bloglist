@@ -6,7 +6,7 @@ if (process.argv.length<3) {
   process.exit(1);
 }
 
-const password = process.argv[2];
+// const password = process.argv[2];
 
 const url = process.env.MONGO_DB_URL;
 
@@ -21,13 +21,6 @@ const blogSchema = new mongoose.Schema({
 });
 
 const Blog = mongoose.model('Blog', blogSchema);
-
-const blog = new Blog({
-  title: "PG's Essays",
-  author: "Paul Graham",
-  url: "http://www.paulgraham.com/articles.html",
-  likes: 500
-});
 
 Blog.find({}).then(result => {
   console.log('blogroll: ');
