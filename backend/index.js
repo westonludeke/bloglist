@@ -7,10 +7,11 @@ const Blog = require('./modules/blog');
 
 const mongoUrl = process.env.MONGO_DB_URL;
 mongoose.set('strictQuery', false);
-mongoose.connect(mongoUrl)
+mongoose.connect(mongoUrl);
 
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
+app.use(express.static('build'));
 
 app.get('/api/blogs', (request, response) => {
   Blog
