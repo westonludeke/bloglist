@@ -9,7 +9,7 @@
     "build:ui": "rm -rf build && cd ../frontend && npm run build && cp -r build ../backend && cd -",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push -u origin main",
     "lint": "eslint .",
-    "test": "jest --verbose",
+    "test": "jest --verbose"
   },
   "author": "Weston Ludeke",
   "license": "MIT",
