@@ -113,3 +113,70 @@ describe('favorite blog', () => {
   });
 });
 
+describe('mostBlogs', () => {
+  test('when list has only one blog, return the author with one blog', () => {
+    const blogs = [
+      {
+        _id: '1',
+        title: 'Blog 1',
+        author: 'John Doe',
+        likes: 5,
+      },
+    ];
+
+    const result = listHelper.mostBlogs(blogs);
+    expect(result).toEqual({
+      author: 'John Doe',
+      blogs: 1,
+    });
+  });
+
+  test('when list has multiple blogs, return the author with the most blogs', () => {
+    const blogs = [
+      {
+        _id: '1',
+        title: 'Blog 1',
+        author: 'John Doe',
+        likes: 5,
+      },
+      {
+        _id: '2',
+        title: 'Blog 2',
+        author: 'Jane Smith',
+        likes: 10,
+      },
+      {
+        _id: '3',
+        title: 'Blog 3',
+        author: 'John Doe',
+        likes: 8,
+      },
+      {
+        _id: '4',
+        title: 'Blog 4',
+        author: 'Jane Smith',
+        likes: 3,
+      },
+      {
+        _id: '5',
+        title: 'Blog 5',
+        author: 'Jane Smith',
+        likes: 2,
+      },
+    ];
+
+    const result = listHelper.mostBlogs(blogs);
+    expect(result).toEqual({
+      author: 'Jane Smith',
+      blogs: 3,
+    });
+  });
+
+  test('when list is empty, return null', () => {
+    const blogs = [];
+
+    const result = listHelper.mostBlogs(blogs);
+    expect(result).toBeNull();
+  });
+});
+
