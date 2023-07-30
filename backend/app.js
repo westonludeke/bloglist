@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 const config = require('./utils/config');
 const express = require('express');
 const app = express();
@@ -12,6 +12,8 @@ const mongoose = require('mongoose');
 // const mongoUrl = process.env.MONGO_DB_URL;
 mongoose.set('strictQuery', false);
 // mongoose.connect(mongoUrl);
+
+logger.info('connecting to', config.MONGO_DB_URL);
 
 mongoose.connect(config.MONGO_DB_URL)
   .then(() => {
