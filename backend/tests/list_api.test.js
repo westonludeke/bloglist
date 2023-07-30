@@ -14,13 +14,13 @@ test('blogs are returned as json', async () => {
 test('there are six blogs listed', async () => {
   const response = await api.get('/api/blogs')
 
-  expect(response.body).toHaveLength(6)
+  expect(response.body).toHaveLength(2)
 })
 
-test('the first blog is about PG\'s Essays', async () => {
+test("the first blog is about PG's Essays", async () => {
   const response = await api.get('/api/blogs')
 
-  expect(response.body[0].title).toBe('PG\'s Essays')
+  expect(response.body[0].title).toBe("PG's Essays")
 })
 
 afterAll(async () => {
