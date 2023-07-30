@@ -7,15 +7,15 @@ const Blog = require('../models/blog');
 const initialBlogs = [
   {
     "title": "PG's Essays",
-    "author":"Paul Graham",
-    "url":"http://www.paulgraham.com/articles.html",
+    "author": "Paul Graham",
+    "url": "http://www.paulgraham.com/articles.html",
     "likes": "500"
   },
   {
     "title":"Platformer",
     "author":"Casey Newton",
-    "url":"platformer.news",
-    "likes":"312"
+    "url": "platformer.news",
+    "likes": "312"
   },
 ]
 
@@ -47,8 +47,30 @@ test("a specific blog is within the returned blogs", async () => {
   expect(titles).toContain("PG's Essays")
 })
 
+test('a valid blog can be added', async () => {
+  const newBlog = {
+    "title": "Borderland Beat",
+    "author": "Sol Prendido",
+    "url": "borderlandbeat.com",
+    "likes": "226"
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  const response = await api.get('/api/blogs')
+
+  const titles = response.body.map(r => r.title)
+
+  expect(response.body).toHaveLength(initialBlogs.length + 1)
+  expect(titles).toContain(
+    'Borderland Beat'
+  )
+})
+
 afterAll(async () => {
   await mongoose.connection.close()
 })
-
-
