@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-// require('dotenv').config();
-// mongoose.set('strictQuery', false);
 
 const blogSchema = new mongoose.Schema({
   title: String,
