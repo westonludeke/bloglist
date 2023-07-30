@@ -50,7 +50,7 @@ test('a valid blog can be added', async () => {
   const blogsAtEnd = await helper.blogsInDb();
   expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1)
 
-  const titles = blogsAtEnd.map(n => n.content);
+  const titles = blogsAtEnd.map(n => n.title);
   expect(titles).toContain(
     'Borderland Beat'
   )
