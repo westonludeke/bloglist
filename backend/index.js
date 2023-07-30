@@ -5,6 +5,7 @@ const app = express();
 const cors = require('cors');
 const Blog = require('./modules/blog');
 const config = require('./utils/config');
+const logger = require('./utils/logger');
 
 const mongoUrl = process.env.MONGO_DB_URL;
 mongoose.set('strictQuery', false);
@@ -61,7 +62,7 @@ app.put('/api/blogs/:id', (request, response, next) => {
 
 // const PORT = process.env.PORT || 3003
 app.listen(config.PORT, () => {
-  console.log(`Server running on port ${config.PORT}`)
+  logger.info(`Server running on port ${config.PORT}`)
 })
 
 module.exports = app;
