@@ -71,6 +71,25 @@ test('a valid blog can be added', async () => {
   )
 })
 
+test('blog without title is not added', async () => {
+  const newBlog = {
+    "author": "Big Ghost LTD.",
+    "url": "http://bigghostnahmean.blogspot.com/",
+    "likes": "1000"
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(400)
+
+  const response = await api.get('/api/blogs')
+
+  expect(response.body).toHaveLength(initialBlogs.length)
+})
+
+// -----
+
 afterAll(async () => {
   await mongoose.connection.close()
 })
