@@ -11,7 +11,7 @@ test('blogs are returned as json', async () => {
     .expect('Content-Type', /application\/json/)
 })
 
-test('there are two blogs', async () => {
+test('there are six blogs listed', async () => {
   const response = await api.get('/api/blogs')
 
   expect(response.body).toHaveLength(6)
