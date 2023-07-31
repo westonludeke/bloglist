@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
 const supertest = require('supertest');
+const mongoose = require('mongoose');
 const helper = require('./test_helper');
 const app = require('../app');
 const api = supertest(app);
@@ -42,6 +42,16 @@ describe('viewing a specific blog', () => {
       .expect('Content-Type', /application\/json/);
 
     expect(resultBlog.body).toEqual(blogToView);
+  })
+
+ test('fails with statuscode 404 if blog does not exist', async () => {
+    const validNonexistingId = new mongoose.Types.ObjectId().toString();
+    await api.get(`/api/blogs/${validNonexistingId}`).expect(404);
+  })
+
+  test('fails with statuscode 404 id is invalid', async () => {
+    const invalidId = '5a3d5da59070081a82a3445';
+    await api.get(`/api/notes/${invalidId}`).expect(404);
   })
 })
 
