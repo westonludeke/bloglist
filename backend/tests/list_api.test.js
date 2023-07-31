@@ -12,9 +12,7 @@ beforeEach(async () => {
 
 describe('when there is initially some blogs saved', () => {
   test('blogs are returned as json', async () => {
-    await api
-      .get('/api/blogs')
-      .expect(200)
+    await api.get('/api/blogs').expect(200)
       .expect('Content-Type', /application\/json/);
   })
 
@@ -36,9 +34,7 @@ describe('viewing a specific blog', () => {
     const blogsAtStart = await helper.blogsInDb();
     const blogToView = blogsAtStart[0];
 
-    const resultBlog = await api
-      .get(`/api/blogs/${blogToView.id}`)
-      .expect(200)
+    const resultBlog = await api.get(`/api/blogs/${blogToView.id}`).expect(200)
       .expect('Content-Type', /application\/json/);
 
     expect(resultBlog.body).toEqual(blogToView);
@@ -58,60 +54,47 @@ describe('viewing a specific blog', () => {
 describe('addition of a new blog', () => {
   test('a valid blog can be added', async () => {
     const newBlog = {
-      "title": "Borderland Beat",
-      "author": "Sol Prendido",
-      "url": "borderlandbeat.com",
-      "likes": "226"
+      "title": "Techdirt",
+      "author": "Mike Masnick",
+      "url": "techdirt.com",
+      "likes": "1337"
     }
 
-    await api
-      .post('/api/blogs')
-      .send(newBlog)
-      .expect(201)
+    await api.post('/api/blogs').send(newBlog).expect(201)
       .expect('Content-Type', /application\/json/);
 
     const blogsAtEnd = await helper.blogsInDb();
     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1);
 
     const titles = blogsAtEnd.map(n => n.title);
-    expect(titles).toContain(
-      'Borderland Beat'
-    );
+    expect(titles).toContain('Techdirt');
   })
 
   test('a blog without likes can be added', async () => {
     const newBlog = {
-      "title": "Passion of the Weiss",
-      "author": "Jeff Weiss",
-      "url": "passionweiss.com"
+      "title": "Stratechery",
+      "author": "Ben Thompson",
+      "url": "https://stratechery.com"
     }
 
-    await api
-      .post('/api/blogs')
-      .send(newBlog)
-      .expect(201)
+    await api.post('/api/blogs').send(newBlog).expect(201)
       .expect('Content-Type', /application\/json/);
 
     const blogsAtEnd = await helper.blogsInDb();
     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1);
 
     const titles = blogsAtEnd.map(n => n.title);
-    expect(titles).toContain(
-      'Passion of the Weiss'
-    );
+    expect(titles).toContain('Stratechery');
   })
 
   test('blog without title is not added', async () => {
     const newBlog = {
-      "author": "Big Ghost LTD.",
-      "url": "http://bigghostnahmean.blogspot.com/",
-      "likes": "1000"
+      "author": "Matt Stoller.",
+      "url": "https://www.thebignewsletter.com",
+      "likes": "404"
     }
 
-    await api
-      .post('/api/blogs')
-      .send(newBlog)
-      .expect(400);
+    await api.post('/api/blogs').send(newBlog).expect(400);
 
     const blogsAtEnd = await helper.blogsInDb();
     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length);
@@ -124,10 +107,7 @@ describe('addition of a new blog', () => {
       "likes": "1000"
     }
 
-    await api
-      .post('/api/blogs')
-      .send(newBlog)
-      .expect(400);
+    await api.post('/api/blogs').send(newBlog).expect(400);
 
     const blogsAtEnd = await helper.blogsInDb();
     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length);
@@ -140,22 +120,16 @@ describe('deletion of a blog', () => {
     const blogsAtStart = await helper.blogsInDb();
     const blogToDelete = blogsAtStart[0];
 
-    await api
-      .delete(`/api/blogs/${blogToDelete.id}`)
-      .expect(204)
+    await api.delete(`/api/blogs/${blogToDelete.id}`).expect(204)
 
     const blogsAtEnd = await helper.blogsInDb();
 
-    expect(blogsAtEnd).toHaveLength(
-      helper.initialBlogs.length - 1
-    )
+    expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length - 1)
 
     const titles = blogsAtEnd.map(r => r.title);
     expect(titles).not.toContain(blogToDelete.title);
   })
 })
-
-// -----
 
 afterAll(async () => {
   await mongoose.connection.close();
