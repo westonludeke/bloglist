@@ -94,6 +94,22 @@ test('a blog without likes can be added', async () => {
   );
 })
 
+test('blog without URL is not added', async () => {
+  const newBlog = {
+    "title": "Daring Fireball",
+    "author": "John Gruber",
+    "likes": "1000"
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(400);
+
+  const blogsAtEnd = await helper.blogsInDb();
+  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length);
+})
+
 test('a specific blog can be viewed', async () => {
   const blogsAtStart = await helper.blogsInDb();
   const blogToView = blogsAtStart[0];
