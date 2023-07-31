@@ -72,6 +72,28 @@ test('blog without title is not added', async () => {
   expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length);
 })
 
+test('a blog without likes can be added', async () => {
+  const newBlog = {
+    "title": "Passion of the Weiss",
+    "author": "Jeff Weiss",
+    "url": "passionweiss.com"
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/);
+
+  const blogsAtEnd = await helper.blogsInDb();
+  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1);
+
+  const titles = blogsAtEnd.map(n => n.title);
+  expect(titles).toContain(
+    'Passion of the Weiss'
+  );
+})
+
 test('a specific blog can be viewed', async () => {
   const blogsAtStart = await helper.blogsInDb();
   const blogToView = blogsAtStart[0];
