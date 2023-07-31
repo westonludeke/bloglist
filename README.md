@@ -16,12 +16,14 @@ This app was built with zero hand-holding, as I wanted to build a new app from s
 
 * The actual functionality of the app is intentionally very limited, as the homepage only allows for adding new blogs to the list.
 
+* The backend's `tests` directory contains the API's tests, making HTTP requests and inspects the database with Mongoose. 
+
 * The CSS is minimal as my focus wasn't on design or layout, but instead learning the MERN stack.
 
 ### Todos
 
 * Add the ability to delete blogs from the list.
 
-* Add an option for `likes` to the `Add a New Blog` section
+* Add an option for `likes` to the `Add a New Blog` section,
 
-* Refactor the application into separate modules.
+* ~~Refactor the application into separate modules.~~ 
