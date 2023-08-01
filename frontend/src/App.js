@@ -37,6 +37,15 @@ const App = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await blogService.remove(id);
+      fetchBlogs(); // Refresh the blogs list after deletion
+    } catch (error) {
+      console.error('Error deleting blog:', error);
+    }
+  };
+
   // Function to add "https://" to URLs that don't have a prefix
   const formatUrl = (url) => {
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
@@ -76,6 +85,7 @@ const App = () => {
                 by: {blog.author}<br />
                 <a href={formatUrl(blog.url)}>{blog.url}</a><br />
                 Likes: {blog.likes}<br />
+                <button onClick={() => handleDelete(blog._id)}>Delete</button><br />
               </p>
             </ul>
           ))}
