@@ -81,7 +81,7 @@ const App = () => {
         <h3>List of Blogs:</h3>
         <ul>
           {blogs.map((blog) => (
-            <ul key={blog._id}>
+            <ul key={blog.id}>
               <p>
                 <strong>{blog.title}</strong><br />
                 by: {blog.author}<br />
