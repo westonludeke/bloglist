@@ -20,8 +20,10 @@ code {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  padding: 20px 0; 
-  margin-bottom: 20px; 
+  padding: 20px 0;
+  margin-bottom: 20px;
+  max-height: 100%;
+  overflow-y: auto; 
 }
 
 h1 {
