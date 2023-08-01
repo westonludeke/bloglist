@@ -87,7 +87,7 @@ const App = () => {
                 by: {blog.author}<br />
                 <a href={formatUrl(blog.url)}>{blog.url}</a><br />
                 Likes: {blog.likes}<br />
-                <button onClick={() => handleDelete(blog._id)}>Delete</button><br />
+                <button onClick={() => handleDelete(blog.id)}>Delete</button><br />
               </p>
             </ul>
           ))}
