@@ -38,7 +38,6 @@ const App = () => {
   };
 
   const handleDelete = async (id) => {
-    console.log('Deleting blog with id: ', id);
     try {
       await blogService.remove(id);
       fetchBlogs(); // Refresh the blogs list after deletion
