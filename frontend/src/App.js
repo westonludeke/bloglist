@@ -38,10 +38,12 @@ const App = () => {
   };
 
   const handleDelete = async (id) => {
+    console.log('Deleting blog with id: ', id);
     try {
       await blogService.remove(id);
       fetchBlogs(); // Refresh the blogs list after deletion
     } catch (error) {
+      console.log('id: ', id);
       console.error('Error deleting blog:', error);
     }
   };
@@ -56,7 +58,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Blog List</h1>
+      <h1>Blog Lists</h1>
       <div>
         <h3>Add a New Blog</h3>
         <form onSubmit={handleSubmit}>

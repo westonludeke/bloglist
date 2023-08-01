@@ -17,13 +17,16 @@ const update = (id, newObject) => {
 }
 
 const remove = async (id) => {
+  try {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`, // Include the Bearer token in the Authorization header
     },
   };
-
   await axios.delete(`${baseUrl}/${id}`, config);
+  } catch (error){
+    console.log('blogService Error deleting blog: ', error)
+  } 
 };
 
 export default { getAll, create, update, remove }
