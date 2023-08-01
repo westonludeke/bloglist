@@ -22,7 +22,9 @@ This app was built with zero hand-holding, as I wanted to build a new app from s
 
 ### Todos
 
-* Add the ability to delete blogs from the list to the UI.
+* Add the ability to delete blogs from the list to the UI. Delete buttons have been added but are not yet functional.
+
+* Fix CSS display issues
 
 * Add an option for `likes` to the `Add a New Blog` section in the UI.
 
