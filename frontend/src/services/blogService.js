@@ -16,4 +16,14 @@ const update = (id, newObject) => {
   return request.then(response => response.data);
 }
 
-export default { getAll, create, update, }
+const remove = async (id) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`, // Include the Bearer token in the Authorization header
+    },
+  };
+
+  await axios.delete(`${baseUrl}/${id}`, config);
+};
+
+export default { getAll, create, update, remove }
