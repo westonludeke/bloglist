@@ -58,7 +58,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Blog Lists</h1>
+      <h1>Blog List</h1>
       <div>
         <h3>Add a New Blog</h3>
         <form onSubmit={handleSubmit}>
