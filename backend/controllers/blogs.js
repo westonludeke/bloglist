@@ -71,8 +71,26 @@ blogsRouter.put('/:id', async (request, response) => {
 });
 
 blogsRouter.delete('/:id', async (request, response) => {
-  await Blog.findByIdAndRemove(request.params.id);
-  response.status(204).end();
+  const blogId = request.params.id;
+
+  try {
+    // Delete the blog from the blogs collection
+    await Blog.findByIdAndRemove(blogId);
+
+    // Find all users who have the blog's id in their blogs array
+    const usersWithBlog = await User.find({ blogs: blogId });
+
+    // Remove the blog's id from the blogs array of each user
+    for (const user of usersWithBlog) {
+      user.blogs = user.blogs.filter((blog) => blog.toString() !== blogId);
+      await user.save();
+    }
+
+    response.status(204).end();
+  } catch (error) {
+    response.status(500).json({ error: 'Server error' });
+  }
+
 });
 
 module.exports = blogsRouter;
