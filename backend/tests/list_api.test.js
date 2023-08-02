@@ -62,7 +62,31 @@ describe('addition of a new blog', () => {
       "likes": "1337"
     }
 
-    await api.post('/api/blogs').send(newBlog).expect(201)
+    const usersAtStart = await helper.usersInDb()
+    const newUser = {
+      username: 'testuser',
+      name: 'Test User',
+      password: 'testpassword',
+    }
+
+    await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+
+    const response = await api
+      .post('/api/login')
+      .send({ username: 'testuser', password: 'testpassword'})
+
+    let token = response.body.token;
+    const usersAtEnd = await helper.usersInDb();
+
+    await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .set('Authorization', `Bearer ${token}`)
+      .expect(201)
       .expect('Content-Type', /application\/json/);
 
     const blogsAtEnd = await helper.blogsInDb();
