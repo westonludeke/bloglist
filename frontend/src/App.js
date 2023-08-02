@@ -57,7 +57,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Blog List</h1>
+      <h1>Cool Tech Blogs!</h1>
       <div>
         <h3>Add a New Blog</h3>
         <form onSubmit={handleSubmit}>
