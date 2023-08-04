@@ -1,12 +1,19 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
+const noSpacesValidator = (value) => {
+  if (value.includes(' ')) {
+    throw new Error('Username must not contain spaces');
+  }
+};
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
     minLength: 3,
     required: true,
-    unique: true
+    unique: true,
+    validate: [noSpacesValidator, 'Username must not contain spaces'],
   },
   name: String,
   passwordHash: String,
