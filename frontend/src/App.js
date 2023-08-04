@@ -8,6 +8,8 @@ const App = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [url, setUrl] = useState('');
+  const [username, setUsername] = useState(''); 
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
     fetchBlogs();
@@ -47,6 +49,11 @@ const App = () => {
     }
   };
 
+  const handleLogin = (event) => {
+    event.preventDefault();
+    console.log('logging in with', username, password);
+  }
+
   // Function to add "https://" to URLs that don't have a prefix
   const formatUrl = (url) => {
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
@@ -58,6 +65,30 @@ const App = () => {
   return (
     <div className="container">
       <h1>Cool Tech Blogs!</h1>
+
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <div>
+          username
+            <input
+            type="text"
+            value={username}
+            name="Username"
+            onChange={({ target }) => setUsername(target.value)}
+          />
+        </div>
+        <div>
+          password
+            <input
+            type="password"
+            value={password}
+            name="Password"
+            onChange={({ target }) => setPassword(target.value)}
+          />
+        </div>
+        <button type="submit">login</button>
+      </form>
+      
       <div>
         <h3>Add a New Blog</h3>
         <form onSubmit={handleSubmit}>
