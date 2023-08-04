@@ -223,6 +223,27 @@ describe('when there is initially one user in db', () => {
     const usersAtEnd = await helper.usersInDb()
     expect(usersAtEnd).toEqual(usersAtStart)
   })
+
+  test('creation fails if username contains spaces', async () => {
+    const usersAtStart = await helper.usersInDb()
+
+    const newUser = {
+      username: 'bob smith',
+      name: 'Bob Smith',
+      password: '12345',
+    }
+
+    const result = await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+      .expect('Content-Type', /application\/json/)
+
+    expect(result.body.error).toContain('User validation failed: username: Username must not contain spaces');
+
+    const usersAtEnd = await helper.usersInDb()
+    expect(usersAtEnd).toEqual(usersAtStart)
+  })
 })
 
 afterAll(async () => {
