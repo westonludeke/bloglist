@@ -103,11 +103,35 @@ describe('addition of a new blog', () => {
       "url": "https://stratechery.com"
     }
 
-    await api.post('/api/blogs').send(newBlog).expect(201)
+    const newUser = {
+      username: 'testuser2',
+      name: 'Test User2',
+      password: 'testpassword2',
+    }
+
+    await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+
+    const response = await api
+      .post('/api/login')
+      .send({ username: 'testuser2', password: 'testpassword2' })
+
+    let token = response.body.token;
+
+    const blogsAtStart = await helper.blogsInDb();
+
+    await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .set('Authorization', `Bearer ${token}`)
+      .expect(201)
       .expect('Content-Type', /application\/json/);
 
     const blogsAtEnd = await helper.blogsInDb();
-    expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1);
+    expect(blogsAtEnd).toHaveLength(blogsAtStart.length + 1);
 
     const titles = blogsAtEnd.map(n => n.title);
     expect(titles).toContain('Stratechery');
