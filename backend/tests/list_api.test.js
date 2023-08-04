@@ -69,9 +69,9 @@ async function registerAndLoginUser(username, password) {
 describe('addition of a new blog', () => {
   test('a valid blog can be added', async () => {
     const newBlog = {
-      "title": "Techdirt",
-      "author": "Mike Masnick",
-      "url": "techdirt.com",
+      "title": "Split Zone Duo",
+      "author": "Steven Godrey, Richard Johnson, Alex Kirshner",
+      "url": "splitzoneduo.com",
       "likes": "1337"
     };
 
@@ -84,14 +84,14 @@ describe('addition of a new blog', () => {
     expect(blogsAtEnd).toHaveLength(blogsAtStart.length + 1);
 
     const titles = blogsAtEnd.map(n => n.title);
-    expect(titles).toContain('Techdirt');
+    expect(titles).toContain('Split Zone Duo');
   });
 
   test('a blog without likes can be added', async () => {
     const newBlog = {
-      "title": "Stratechery",
-      "author": "Ben Thompson",
-      "url": "https://stratechery.com"
+      "title": "Dispatches From a Collapsing State",
+      "author": "by: Jared Yates Sexton",
+      "url": "https://jaredyatessexton.substack.com"
     };
 
     const token = await registerAndLoginUser('testuser2', 'testpassword2');
@@ -103,7 +103,7 @@ describe('addition of a new blog', () => {
     expect(blogsAtEnd).toHaveLength(blogsAtStart.length + 1);
 
     const titles = blogsAtEnd.map(n => n.title);
-    expect(titles).toContain('Stratechery');
+    expect(titles).toContain('Dispatches From a Collapsing State');
   });
 
   test('blog without title is not added', async () => {
@@ -121,8 +121,8 @@ describe('addition of a new blog', () => {
 
   test('blog without URL is not added', async () => {
     const newBlog = {
-      "title": "Daring Fireball",
-      "author": "John Gruber",
+      "title": "The Column",
+      "author": "Adam Johnson",
       "likes": "1000"
     };
 
