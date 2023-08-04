@@ -60,7 +60,7 @@ const App = () => {
   // Function to add "https://" to URLs that don't have a prefix
   const formatUrl = (url) => {
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
-      return 'https://' + url;
+      return 'http://' + url;
     }
     return url;
   };
