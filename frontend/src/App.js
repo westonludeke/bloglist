@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Notification from './components/Notification';
 import blogService from './services/blogService';
 import './index.css';
 
@@ -8,6 +9,8 @@ const App = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [url, setUrl] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const [username, setUsername] = useState(''); 
   const [password, setPassword] = useState('');
 
@@ -20,7 +23,7 @@ const App = () => {
       const blogs = await blogService.getAll();
       setBlogs(blogs);
     } catch (error) {
-      console.error('Error fetching blogs:', error);
+      setErrorMessage('Error fetching blogs');
     }
   };
 
@@ -35,7 +38,7 @@ const App = () => {
       setAuthor('');
       setUrl('');
     } catch (error) {
-      console.error('Error adding blog:', error);
+      setErrorMessage('Error adding blog');
     }
   };
 
@@ -45,7 +48,7 @@ const App = () => {
       fetchBlogs(); // Refresh the blogs list after deletion
     } catch (error) {
       console.log('id: ', id);
-      console.error('Error deleting blog:', error);
+      setErrorMessage('Error deleting blog');
     }
   };
 
@@ -65,6 +68,7 @@ const App = () => {
   return (
     <div className="container">
       <h1>Cool Tech Blogs!</h1>
+      <Notification message={errorMessage} />
 
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
@@ -88,7 +92,7 @@ const App = () => {
         </div>
         <button type="submit">login</button>
       </form>
-      
+
       <div>
         <h3>Add a New Blog</h3>
         <form onSubmit={handleSubmit}>
