@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import Notification from './components/Notification';
 import blogService from './services/blogService';
+import loginService from './services/login'
 import './index.css';
 
 const App = () => {
@@ -13,7 +14,25 @@ const App = () => {
 
   const [username, setUsername] = useState(''); 
   const [password, setPassword] = useState('');
+  const [user, setUser] = useState(null)
 
+  const handleLogin = async (event) => {
+    event.preventDefault()
+    try {
+      const user = await loginService.login({
+        username, password,
+      })
+      setUser(user)
+      setUsername('')
+      setPassword('')
+    } catch (exception) {
+      setErrorMessage('Wrong credentials')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
+  }
+  
   useEffect(() => {
     fetchBlogs();
   }, []);
@@ -52,10 +71,10 @@ const App = () => {
     }
   };
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    console.log('logging in with', username, password);
-  }
+  // const handleLogin = (event) => {
+  //   event.preventDefault();
+  //   console.log('logging in with', username, password);
+  // }
 
   // Function to add "https://" to URLs that don't have a prefix
   const formatUrl = (url) => {
