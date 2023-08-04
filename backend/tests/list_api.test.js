@@ -53,6 +53,19 @@ describe('viewing a specific blog', () => {
   })
 })
 
+async function registerAndLoginUser(username, password) {
+  const newUser = {
+    username,
+    name: 'Test User',
+    password,
+  };
+
+  await api.post('/api/users').send(newUser).expect(201).expect('Content-Type', /application\/json/);
+
+  const response = await api.post('/api/login').send({ username, password });
+  return response.body.token;
+}
+
 describe('addition of a new blog', () => {
   test('a valid blog can be added', async () => {
     const newBlog = {
@@ -60,110 +73,66 @@ describe('addition of a new blog', () => {
       "author": "Mike Masnick",
       "url": "techdirt.com",
       "likes": "1337"
-    }
+    };
 
-    const usersAtStart = await helper.usersInDb()
-    const newUser = {
-      username: 'testuser',
-      name: 'Test User',
-      password: 'testpassword',
-    }
+    const token = await registerAndLoginUser('testuser', 'testpassword');
 
-    await api
-      .post('/api/users')
-      .send(newUser)
-      .expect(201)
-      .expect('Content-Type', /application\/json/)
-
-    const response = await api
-      .post('/api/login')
-      .send({ username: 'testuser', password: 'testpassword'})
-
-    let token = response.body.token;
-    const usersAtEnd = await helper.usersInDb();
-
-    await api
-      .post('/api/blogs')
-      .send(newBlog)
-      .set('Authorization', `Bearer ${token}`)
-      .expect(201)
-      .expect('Content-Type', /application\/json/);
-
+    const blogsAtStart = await helper.blogsInDb();
+    await api.post('/api/blogs').send(newBlog).set('Authorization', `Bearer ${token}`).expect(201).expect('Content-Type', /application\/json/);
     const blogsAtEnd = await helper.blogsInDb();
-    expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1);
+
+    expect(blogsAtEnd).toHaveLength(blogsAtStart.length + 1);
 
     const titles = blogsAtEnd.map(n => n.title);
     expect(titles).toContain('Techdirt');
-  })
+  });
 
   test('a blog without likes can be added', async () => {
     const newBlog = {
       "title": "Stratechery",
       "author": "Ben Thompson",
       "url": "https://stratechery.com"
-    }
+    };
 
-    const newUser = {
-      username: 'testuser2',
-      name: 'Test User2',
-      password: 'testpassword2',
-    }
-
-    await api
-      .post('/api/users')
-      .send(newUser)
-      .expect(201)
-      .expect('Content-Type', /application\/json/)
-
-    const response = await api
-      .post('/api/login')
-      .send({ username: 'testuser2', password: 'testpassword2' })
-
-    let token = response.body.token;
+    const token = await registerAndLoginUser('testuser2', 'testpassword2');
 
     const blogsAtStart = await helper.blogsInDb();
-
-    await api
-      .post('/api/blogs')
-      .send(newBlog)
-      .set('Authorization', `Bearer ${token}`)
-      .expect(201)
-      .expect('Content-Type', /application\/json/);
-
+    await api.post('/api/blogs').send(newBlog).set('Authorization', `Bearer ${token}`).expect(201).expect('Content-Type', /application\/json/);
     const blogsAtEnd = await helper.blogsInDb();
+
     expect(blogsAtEnd).toHaveLength(blogsAtStart.length + 1);
 
     const titles = blogsAtEnd.map(n => n.title);
     expect(titles).toContain('Stratechery');
-  })
+  });
 
   test('blog without title is not added', async () => {
     const newBlog = {
       "author": "Matt Stoller.",
       "url": "https://www.thebignewsletter.com",
       "likes": "404"
-    }
+    };
 
     await api.post('/api/blogs').send(newBlog).expect(400);
 
     const blogsAtEnd = await helper.blogsInDb();
     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length);
-  })
+  });
 
   test('blog without URL is not added', async () => {
     const newBlog = {
       "title": "Daring Fireball",
       "author": "John Gruber",
       "likes": "1000"
-    }
+    };
 
     await api.post('/api/blogs').send(newBlog).expect(400);
 
     const blogsAtEnd = await helper.blogsInDb();
     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length);
-  })
+  });
+});
 
-})
 
 describe('deletion of a blog', () => {
   test('a blog can be deleted', async () => {
