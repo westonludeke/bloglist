@@ -1,6 +1,6 @@
 import axios from 'axios';
-const baseUrl = '/api/blogs'; // use for production via Render
-// const baseUrl = 'http://localhost:3003/api/blogs'; // use for local testing
+// const baseUrl = '/api/blogs'; // use for production via Render
+const baseUrl = 'http://localhost:3003/api/blogs'; // use for local testing
 
 const getAll = () => {
   const request = axios.get(baseUrl);
