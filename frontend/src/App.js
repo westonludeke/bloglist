@@ -46,7 +46,7 @@ const App = () => {
     }
   };
 
-  const handleSubmit = async (event) => {
+  const addBlog = async (event) => {
     event.preventDefault();
     const newBlog = { title, author, url, likes: 0 };
 
@@ -114,7 +114,7 @@ const App = () => {
 
       <div>
         <h3>Add a New Blog</h3>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={addBlog}>
           <div>
             <label>Title:</label>
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
