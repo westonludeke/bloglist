@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 // import Blog from './components/Blog';
 import Notification from './components/Notification';
+import LoginForm from './components/LoginForm';
 import blogService from './services/blogService';
-import loginService from './services/login'
+import loginService from './services/login';
 import './index.css';
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
   const [username, setUsername] = useState(''); 
   const [password, setPassword] = useState('');
   const [user, setUser] = useState(null);
+  const [loginVisible, setLoginVisible] = useState(false);
 
   useEffect(() => {
     blogService
@@ -84,30 +86,29 @@ const App = () => {
     }
   };
 
-  const loginForm = () => (
-    <form onSubmit={handleLogin}>
-      <div>
-        username: 
-          <input
-          type="text"
-          value={username}
-          name="Username"
-          onChange={({ target }) => setUsername(target.value)}
-        />
-      </div>
-      <div>
-        password:
-          <input
-          type="password"
-          value={password}
-          name="Password"
-          onChange={({ target }) => setPassword(target.value)}
-        />
-      </div>
-      <button type="submit">login</button>
-    </form>      
-  )
+  const loginForm = () => {
+    const hideWhenVisible = { display: loginVisible ? 'none' : '' }
+    const showWhenVisible = { display: loginVisible ? '' : 'none' }
 
+    return (
+      <div>
+        <div style={hideWhenVisible}>
+          <button onClick={() => setLoginVisible(true)}>log in</button>
+        </div>
+        <div style={showWhenVisible}>
+          <LoginForm
+            username={username}
+            password={password}
+            handleUsernameChange={({ target }) => setUsername(target.value)}
+            handlePasswordChange={({ target }) => setPassword(target.value)}
+            handleSubmit={handleLogin}
+          />
+          <button onClick={() => setLoginVisible(false)}>cancel</button>
+        </div>
+      </div>
+    )
+  }
+  
   const blogForm = () => (
     <div>
       <h3>Add a New Blog</h3>
