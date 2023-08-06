@@ -126,15 +126,17 @@ const App = () => {
         <div>
           <p>{user.name} logged in</p>
           <button onClick={handleLogout}>Log out</button>
-          <BlogForm
-            title={title}
-            author={author}
-            url={url}
-            handleSubmit={addBlog}
-            handleTitleChange={(e) => setTitle(e.target.value)}
-            handleAuthorChange={(e) => setAuthor(e.target.value)}
-            handleUrlChange={(e) => setUrl(e.target.value)}
-          />
+          <Togglable buttonLabel="new blog">
+            <BlogForm
+              title={title}
+              author={author}
+              url={url}
+              handleSubmit={addBlog}
+              handleTitleChange={(e) => setTitle(e.target.value)}
+              handleAuthorChange={(e) => setAuthor(e.target.value)}
+              handleUrlChange={(e) => setUrl(e.target.value)}
+            />
+          </Togglable>
         </div>
       )}
 
