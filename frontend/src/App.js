@@ -53,6 +53,12 @@ const App = () => {
       }, 5000)
     }
   }
+
+  const handleLogout = () => {
+    window.localStorage.removeItem('loggedBlogappUser');
+    setUser(null);
+    blogService.setToken(null);
+  };
   
   const fetchBlogs = async () => {
     try {
@@ -146,11 +152,13 @@ const App = () => {
       <Notification message={errorMessage} />
 
       {!user && loginForm()} 
-      {user && <div>
-        <p>{user.name} logged in</p>
+      {user && (
+        <div>
+          <p>{user.name} logged in</p>
           {blogForm()}
+          <button onClick={handleLogout}>Log out</button>
         </div>
-      }
+      )}
 
       <h3>List of Blogs:</h3>
       <ul>
