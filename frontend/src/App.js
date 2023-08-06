@@ -15,7 +15,7 @@ const App = () => {
   const [url, setUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const [username, setUsername] = useState(''); 
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState(null);
   const [loginVisible, setLoginVisible] = useState(false);
@@ -25,7 +25,7 @@ const App = () => {
       .getAll()
       .then(initialBlogs => {
         setBlogs(initialBlogs);
-      })
+      });
   }, []);
 
   useEffect(() => {
@@ -54,16 +54,16 @@ const App = () => {
       setErrorMessage('Wrong credentials');
       setTimeout(() => {
         setErrorMessage(null);
-      }, 5000)
+      }, 5000);
     }
-  }
+  };
 
   const handleLogout = () => {
     window.localStorage.removeItem('loggedBlogappUser');
     setUser(null);
     blogService.setToken(null);
   };
-  
+
   const fetchBlogs = async () => {
     try {
       const blogs = await blogService.getAll();
@@ -110,7 +110,7 @@ const App = () => {
       <h1>Cool Tech Blogs!</h1>
       <Notification message={errorMessage} />
 
-      {!user && 
+      {!user &&
         <Togglable buttonLabel="log in">
           <LoginForm
             username={username}
