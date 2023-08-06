@@ -72,7 +72,7 @@ const App = () => {
   const loginForm = () => (
     <form onSubmit={handleLogin}>
       <div>
-        username
+        username: 
           <input
           type="text"
           value={username}
@@ -81,7 +81,7 @@ const App = () => {
         />
       </div>
       <div>
-        password
+        password:
           <input
           type="password"
           value={password}
@@ -135,29 +135,6 @@ const App = () => {
     <div className="container">
       <h1>Cool Tech Blogs!</h1>
       <Notification message={errorMessage} />
-
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          username
-            <input
-            type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-          password
-            <input
-            type="password"
-            value={password}
-            name="Password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button type="submit">login</button>
-      </form>
 
       {!user && loginForm()} 
       {user && <div>
