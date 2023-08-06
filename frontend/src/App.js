@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import Blog from './components/Blog';
 import Notification from './components/Notification';
 import LoginForm from './components/LoginForm';
+import BlogForm from './components/BlogForm';
 import blogService from './services/blogService';
 import loginService from './services/login';
 import './index.css';
@@ -108,7 +109,7 @@ const App = () => {
       </div>
     )
   }
-  
+
   const blogForm = () => (
     <div>
       <h3>Add a New Blog</h3>
