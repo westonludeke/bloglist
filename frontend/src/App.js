@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Notification from './components/Notification';
 import LoginForm from './components/LoginForm';
 import BlogForm from './components/BlogForm';
+import Togglable from './components/Togglable';
 import blogService from './services/blogService';
 import loginService from './services/login';
 import './index.css';
@@ -87,29 +88,6 @@ const App = () => {
     }
   };
 
-  const loginForm = () => {
-    const hideWhenVisible = { display: loginVisible ? 'none' : '' }
-    const showWhenVisible = { display: loginVisible ? '' : 'none' }
-
-    return (
-      <div>
-        <div style={hideWhenVisible}>
-          <button onClick={() => setLoginVisible(true)}>log in</button>
-        </div>
-        <div style={showWhenVisible}>
-          <LoginForm
-            username={username}
-            password={password}
-            handleUsernameChange={({ target }) => setUsername(target.value)}
-            handlePasswordChange={({ target }) => setPassword(target.value)}
-            handleSubmit={handleLogin}
-          />
-          <button onClick={() => setLoginVisible(false)}>cancel</button>
-        </div>
-      </div>
-    )
-  }
-
   const handleDelete = async (id) => {
     try {
       await blogService.remove(id);
@@ -132,7 +110,18 @@ const App = () => {
       <h1>Cool Tech Blogs!</h1>
       <Notification message={errorMessage} />
 
-      {!user && loginForm()} 
+      {!user && 
+        <Togglable buttonLabel="log in">
+          <LoginForm
+            username={username}
+            password={password}
+            handleUsernameChange={({ target }) => setUsername(target.value)}
+            handlePasswordChange={({ target }) => setPassword(target.value)}
+            handleSubmit={handleLogin}
+          />
+        </Togglable>
+      }
+
       {user && (
         <div>
           <p>{user.name} logged in</p>
