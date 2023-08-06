@@ -110,27 +110,6 @@ const App = () => {
     )
   }
 
-  const blogForm = () => (
-    <div>
-      <h3>Add a New Blog</h3>
-      <form onSubmit={addBlog}>
-        <div>
-          <label>Title:</label>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-        </div>
-        <div>
-          <label>Author:</label>
-          <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} />
-        </div>
-        <div>
-          <label>URL:</label>
-          <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
-        </div>
-        <button type="submit">Add Blog</button>
-      </form>
-    </div>
-  );
-
   const handleDelete = async (id) => {
     try {
       await blogService.remove(id);
@@ -158,7 +137,15 @@ const App = () => {
         <div>
           <p>{user.name} logged in</p>
           <button onClick={handleLogout}>Log out</button>
-          {blogForm()}
+          <BlogForm
+            title={title}
+            author={author}
+            url={url}
+            handleSubmit={addBlog}
+            handleTitleChange={(e) => setTitle(e.target.value)}
+            handleAuthorChange={(e) => setAuthor(e.target.value)}
+            handleUrlChange={(e) => setUrl(e.target.value)}
+          />
         </div>
       )}
 
