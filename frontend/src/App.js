@@ -123,7 +123,7 @@ const App = () => {
       {user && (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <p>{user.name} logged in</p>
-          <div style={{ display: 'flex', justifyContent: 'space-between', width: '200px' }}>
+          
             <button onClick={handleLogout}>log out</button>
             <Togglable buttonLabel="new blog">
               <BlogForm
@@ -136,7 +136,7 @@ const App = () => {
                 handleUrlChange={(e) => setUrl(e.target.value)}
               />
             </Togglable>
-          </div>
+
         </div>
       )}
 
