@@ -71,7 +71,7 @@ const App = () => {
     }
   };
 
-  const addBlog = async (event) => {
+  const addBlog = async () => {
     // event.preventDefault();
     const newBlog = { title, author, url, likes: 0 };
 
