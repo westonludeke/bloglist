@@ -11,13 +11,15 @@ const Togglable = (props) => {
   };
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <div style={hideWhenVisible}>
         <button onClick={toggleVisibility}>{props.buttonLabel}</button>
       </div>
-      <div style={showWhenVisible}>
+      <div style={{ ...showWhenVisible, marginTop: '10px' }}>
         {props.children}
-        <button onClick={toggleVisibility}>cancel</button>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+          <button onClick={toggleVisibility}>cancel</button>
+        </div>
       </div>
     </div>
   );
