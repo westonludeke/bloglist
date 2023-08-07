@@ -13,6 +13,7 @@ const App = () => {
   const [author, setAuthor] = useState('');
   const [url, setUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -48,6 +49,10 @@ const App = () => {
       setUser(user);
       setUsername('');
       setPassword('');
+      setSuccessMessage('Login successful!');
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 5000);
     } catch (exception) {
       setErrorMessage('Wrong credentials');
       setTimeout(() => {
@@ -107,7 +112,11 @@ const App = () => {
     <div className="container">
       <h1>Cool Tech Blogs!</h1>
       <Notification message={errorMessage} />
-
+      {successMessage && (
+        <div className="success">
+          {successMessage}
+        </div>
+      )}
       {!user &&
         <Togglable buttonLabel="sign in">
           <LoginForm
