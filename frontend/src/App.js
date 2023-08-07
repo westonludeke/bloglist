@@ -14,8 +14,6 @@ const App = () => {
   const [url, setUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
-  const [addBlogSuccessMessage, setAddBlogSuccessMessage] = useState(null);
-  const [deleteBlogSuccessMessage, setDeleteBlogSuccessMessage] = useState(null);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -88,9 +86,9 @@ const App = () => {
       setTitle('');
       setAuthor('');
       setUrl('');
-      setAddBlogSuccessMessage(`Blog added successfully: ${addedBlog.title}`);
+      setSuccessMessage(`Blog added successfully: ${addedBlog.title}`);
       setTimeout(() => {
-        setAddBlogSuccessMessage(null);
+        setSuccessMessage(null);
       }, 5000);
     } catch (error) {
       setErrorMessage('Error adding blog');
@@ -100,9 +98,9 @@ const App = () => {
   const handleDelete = async (id) => {
     try {
       await blogService.remove(id);
-      setDeleteBlogSuccessMessage('Deletion successful');
+      setSuccessMessage('Successfully deleted blog');
       setTimeout(() => {
-        setDeleteBlogSuccessMessage(null);
+        setSuccessMessage(null);
       }, 5000);
       fetchBlogs(); // Refresh the blogs list after deletion
     } catch (error) {
@@ -138,16 +136,6 @@ const App = () => {
       {successMessage && (
         <div className="success">
           {successMessage}
-        </div>
-      )}
-      {addBlogSuccessMessage && (
-        <div className="success">
-          {addBlogSuccessMessage}
-        </div>
-      )}
-      {deleteBlogSuccessMessage && (
-        <div className="success">
-          {deleteBlogSuccessMessage}
         </div>
       )}
       {!user &&
