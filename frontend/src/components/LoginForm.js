@@ -13,6 +13,7 @@ const LoginForm = ({
         <div>
           username:
           <input
+            style={{ marginLeft: '5px' }}
             value={username}
             onChange={handleUsernameChange}
           />
@@ -20,6 +21,7 @@ const LoginForm = ({
         <div>
           password:
           <input
+            style={{ marginLeft: '5px' }}
             type="password"
             value={password}
             onChange={handlePasswordChange}
