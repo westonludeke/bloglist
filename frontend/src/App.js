@@ -14,6 +14,7 @@ const App = () => {
   const [url, setUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [addBlogSuccessMessage, setAddBlogSuccessMessage] = useState(null);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -86,6 +87,10 @@ const App = () => {
       setTitle('');
       setAuthor('');
       setUrl('');
+      setAddBlogSuccessMessage(`Blog added successfully: ${addedBlog.title}`);
+      setTimeout(() => {
+        setAddBlogSuccessMessage(null);
+      }, 5000);
     } catch (error) {
       setErrorMessage('Error adding blog');
     }
@@ -115,6 +120,11 @@ const App = () => {
       {successMessage && (
         <div className="success">
           {successMessage}
+        </div>
+      )}
+      {addBlogSuccessMessage && (
+        <div className="success">
+          {addBlogSuccessMessage}
         </div>
       )}
       {!user &&
