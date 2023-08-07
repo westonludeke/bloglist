@@ -135,23 +135,23 @@ const App = () => {
               handleUrlChange={(e) => setUrl(e.target.value)}
             />
           </Togglable>
+          <h3>List of Blogs:</h3>
+          <ul>
+            {blogs.map((blog) => (
+              <ul key={blog.id}>
+                <p>
+                  <strong>{blog.title}</strong><br />
+                  by: {blog.author}<br />
+                  <a href={formatUrl(blog.url)}>{blog.url}</a><br />
+                  Likes: {blog.likes}<br />
+                  {user && <button onClick={() => handleDelete(blog.id)}>Delete</button>}
+                  <br />
+                </p>
+              </ul>
+            ))}
+          </ul>
         </div>
       )}
-
-      <h3>List of Blogs:</h3>
-      <ul>
-        {blogs.map((blog) => (
-          <ul key={blog.id}>
-            <p>
-              <strong>{blog.title}</strong><br />
-              by: {blog.author}<br />
-              <a href={formatUrl(blog.url)}>{blog.url}</a><br />
-              Likes: {blog.likes}<br />
-              <button onClick={() => handleDelete(blog.id)}>Delete</button><br />
-            </p>
-          </ul>
-        ))}
-      </ul>
     </div>
   );
 };
