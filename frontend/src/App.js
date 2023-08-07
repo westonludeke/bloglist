@@ -8,6 +8,7 @@ import loginService from './services/login';
 import './index.css';
 
 const App = () => {
+  const [showLoginForm, setShowLoginForm] = useState(false);
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -36,6 +37,10 @@ const App = () => {
     }
   }, []);
 
+  const handleToggleLoginForm = () => {
+    setShowLoginForm(!showLoginForm);
+  };
+
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
@@ -49,6 +54,7 @@ const App = () => {
       setUser(user);
       setUsername('');
       setPassword('');
+      setShowLoginForm(false);
       setSuccessMessage('Login successful!');
       setTimeout(() => {
         setSuccessMessage(null);
@@ -65,6 +71,7 @@ const App = () => {
     window.localStorage.removeItem('loggedBlogappUser');
     setUser(null);
     blogService.setToken(null);
+    setShowLoginForm(false);
   };
 
   const fetchBlogs = async () => {
@@ -130,7 +137,7 @@ const App = () => {
   };
 
   return (
-    <div className="container">
+    <div className={`container ${showLoginForm ? 'with-form' : ''}`}>
       <h1>Cool Tech Blogs!</h1>
       <Notification message={errorMessage} />
       {successMessage && (
@@ -139,7 +146,7 @@ const App = () => {
         </div>
       )}
       {!user &&
-        <Togglable buttonLabel="sign in">
+        <Togglable buttonLabel="sign in" handleToggle={handleToggleLoginForm}>
           <LoginForm
             username={username}
             password={password}
