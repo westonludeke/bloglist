@@ -30,7 +30,7 @@ const remove = async (id) => {
   try {
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`, // Include the Bearer token in the Authorization header
+        Authorization: token, // Include the Bearer token in the Authorization header
       },
     };
     await axios.delete(`${baseUrl}/${id}`, config);
