@@ -118,6 +118,19 @@ const App = () => {
     return url;
   };
 
+  const sortBlogsByTitle = (blogA, blogB) => {
+    const titleA = blogA.title.toLowerCase();
+    const titleB = blogB.title.toLowerCase();
+
+    if (titleA < titleB) {
+      return -1;
+    }
+    if (titleA > titleB) {
+      return 1;
+    }
+    return 0;
+  };
+
   return (
     <div className="container">
       <h1>Cool Tech Blogs!</h1>
@@ -169,7 +182,7 @@ const App = () => {
 
       <h3>List of Blogs:</h3>
       <ul>
-        {blogs.map((blog) => (
+        {blogs.sort(sortBlogsByTitle).map((blog) => (
           <ul key={blog.id}>
             <p>
               <strong>{blog.title}</strong><br />
