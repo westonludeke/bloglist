@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import Blog from './components/Blog';
 import Notification from './components/Notification';
 import LoginForm from './components/LoginForm';
 import BlogForm from './components/BlogForm';
@@ -18,7 +17,6 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState(null);
-  const [loginVisible, setLoginVisible] = useState(false);
 
   useEffect(() => {
     blogService
