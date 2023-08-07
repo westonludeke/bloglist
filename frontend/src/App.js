@@ -15,6 +15,7 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [addBlogSuccessMessage, setAddBlogSuccessMessage] = useState(null);
+  const [deleteBlogSuccessMessage, setDeleteBlogSuccessMessage] = useState(null);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -99,6 +100,10 @@ const App = () => {
   const handleDelete = async (id) => {
     try {
       await blogService.remove(id);
+      setDeleteBlogSuccessMessage('Deletion successful');
+      setTimeout(() => {
+        setDeleteBlogSuccessMessage(null);
+      }, 5000);
       fetchBlogs(); // Refresh the blogs list after deletion
     } catch (error) {
       console.log('id: ', id);
@@ -125,6 +130,11 @@ const App = () => {
       {addBlogSuccessMessage && (
         <div className="success">
           {addBlogSuccessMessage}
+        </div>
+      )}
+      {deleteBlogSuccessMessage && (
+        <div className="success">
+          {deleteBlogSuccessMessage}
         </div>
       )}
       {!user &&
