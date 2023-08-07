@@ -123,7 +123,7 @@ const App = () => {
       {user && (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <p>{user.name} logged in</p>
-          <button onClick={handleLogout}>Log out</button>
+          <button onClick={handleLogout}>Log out</button><br />
           <Togglable buttonLabel="new blog">
             <BlogForm
               title={title}
