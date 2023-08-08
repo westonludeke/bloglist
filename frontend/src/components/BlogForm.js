@@ -2,7 +2,7 @@ import React from 'react';
 
 const BlogForm = ({ title, author, url, handleSubmit, handleTitleChange, handleAuthorChange, handleUrlChange }) => {
   return (
-    <div>
+    <div data-testid="blog-form-container">
       <h3>Add a New Blog</h3>
       <form onSubmit={handleSubmit}>
         <div>
