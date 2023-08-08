@@ -1,12 +1,12 @@
 describe('Blog app', function() {
   beforeEach(function() {
-    cy.request('POST', 'http://localhost:3003/api/testing/reset')
+    cy.request('POST', `${Cypress.env('BACKEND')}/testing/reset`)
     const user = {
       name: 'Weston Admin',
       username: 'admin',
       password: '12345'
     }
-    cy.request('POST', 'http://localhost:3003/api/users/', user)
+    cy.request('POST', `${Cypress.env('BACKEND')}/users`, user)
     cy.visit('')
   })
 
