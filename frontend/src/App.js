@@ -9,7 +9,6 @@ import './index.css';
 
 const App = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const [showAddBlogForm, setShowAddBlogForm] = useState(false);
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -40,10 +39,6 @@ const App = () => {
 
   const handleToggleLoginForm = () => {
     setShowLoginForm(!showLoginForm);
-  };
-
-  const handleToggleAddBlogForm = () => {
-    setShowAddBlogForm(!showAddBlogForm);
   };
 
   const handleLogin = async (event) => {
@@ -99,7 +94,6 @@ const App = () => {
       setAuthor('');
       setUrl('');
       setSuccessMessage(`Blog added successfully: ${addedBlog.title}`);
-      setShowAddBlogForm(false);
       setTimeout(() => {
         setSuccessMessage(null);
       }, 5000);
@@ -167,18 +161,16 @@ const App = () => {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <p>{user.name} logged in</p>
           <button onClick={handleLogout}>log out</button><br />
-          <Togglable buttonLabel="new blog" handleToggle={handleToggleAddBlogForm}>
-            {showAddBlogForm && (
-              <BlogForm
-                title={title}
-                author={author}
-                url={url}
-                handleSubmit={addBlog}
-                handleTitleChange={(e) => setTitle(e.target.value)}
-                handleAuthorChange={(e) => setAuthor(e.target.value)}
-                handleUrlChange={(e) => setUrl(e.target.value)}
-              />
-            )}
+          <Togglable buttonLabel="new blog">
+            <BlogForm
+              title={title}
+              author={author}
+              url={url}
+              handleSubmit={addBlog}
+              handleTitleChange={(e) => setTitle(e.target.value)}
+              handleAuthorChange={(e) => setAuthor(e.target.value)}
+              handleUrlChange={(e) => setUrl(e.target.value)}
+            />
           </Togglable>
         </div>
       )}
