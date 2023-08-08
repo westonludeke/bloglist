@@ -14,8 +14,8 @@ describe('Blog app', function() {
 
   it('user can log in', function() {
     cy.contains('sign in').click()
-    cy.get('#username:').type('admin')
-    cy.get('#password:').type('12345')
+    cy.get('#username').type('admin')
+    cy.get('#password').type('12345')
     cy.get('#login-button').click()
 
     cy.contains('Weston Admin logged in')
@@ -31,7 +31,7 @@ describe('Blog app', function() {
 
     it('a new blog can be created', function() {
       cy.contains('new blog').click()
-      cy.get('input').type('a blog created by cypress')
+      cy.get('#Title').type('a blog created by cypress')
       cy.contains('Add Blog').click()
       cy.contains('a note blog by cypress')
     })
