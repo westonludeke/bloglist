@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Blog from './components/Blog';
 import Notification from './components/Notification';
 import LoginForm from './components/LoginForm';
 import BlogForm from './components/BlogForm';
@@ -116,13 +117,6 @@ const App = () => {
     }
   };
 
-  const formatUrl = (url) => {
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-      return 'http://' + url;
-    }
-    return url;
-  };
-
   const sortBlogsByTitle = (blogA, blogB) => {
     const titleA = blogA.title.toLowerCase();
     const titleB = blogB.title.toLowerCase();
@@ -178,17 +172,12 @@ const App = () => {
       <h3>List of Blogs:</h3>
       <ul>
         {blogs.sort(sortBlogsByTitle).map((blog) => (
-          <ul key={blog.id}>
-            <p>
-              <strong>{blog.title}</strong><br />
-              by: {blog.author}<br />
-              <a href={formatUrl(blog.url)}>{blog.url}</a><br />
-              Likes: {blog.likes}<br />
-              { user && (
-                <button onClick={() => handleDelete(blog.id)}>delete</button>
-              )}
-            </p>
-          </ul>
+          <Blog
+            key={blog.id}
+            blog={blog}
+            handleDelete={handleDelete}
+            user={user}
+          />
         ))}
       </ul>
     </div>
