@@ -7,7 +7,7 @@ const formatUrl = (url) => {
 
 const Blog = ({ blog, user, handleDelete }) => {
   return (
-    <ul key={blog.id}>
+    <ul key={blog.id} className="blog">
       <p>
         <strong>{blog.title}</strong><br />
         by: {blog.author}<br />
