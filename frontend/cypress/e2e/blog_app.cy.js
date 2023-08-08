@@ -31,7 +31,7 @@ describe('Blog app', function() {
 
     it('a new blog can be created', function() {
       cy.contains('new blog').click()
-      cy.get('#Title').type('a blog created by cypress')
+      cy.get('#title').type('a blog created by cypress')
       cy.contains('Add Blog').click()
       cy.contains('a note blog by cypress')
     })
