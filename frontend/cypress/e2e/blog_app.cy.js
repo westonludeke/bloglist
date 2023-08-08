@@ -44,12 +44,7 @@ describe('Blog app', function() {
 
   describe('when logged in', function() {
     beforeEach(function() {
-      cy.request('POST', 'http://localhost:3003/api/login', {
-        username: 'admin', password: '12345'
-      }).then(response => {
-        localStorage.setItem('loggedBlogappUser', JSON.stringify(response.body))
-        cy.visit('http://localhost:3003')
-      })
+      cy.login({ username: 'admin', password: '12345' }) 
     })
 
     it('a new blog can be created', function() {
@@ -59,6 +54,16 @@ describe('Blog app', function() {
       cy.get('#url').type('cypress.io')
       cy.contains('Add Blog').click()
       cy.contains('a blog created by cypress')
+    })
+
+    describe('and a blog exists', function () {
+      beforeEach(function () {
+        cy.createBlog({
+          title: 'another blog cypress',
+          author: 'queen cypress',
+          url: 'queencypress.com'
+        })
+      })
     })
   })
 })
