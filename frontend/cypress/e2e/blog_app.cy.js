@@ -7,7 +7,7 @@ describe('Blog app', function() {
       password: '12345'
     }
     cy.request('POST', 'http://localhost:3003/api/users/', user)
-    cy.visit('http://localhost:3003')
+    cy.visit('')
   })
 
   it('front page can be opened', function() {
