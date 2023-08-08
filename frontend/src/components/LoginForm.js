@@ -13,6 +13,7 @@ const LoginForm = ({
         <div>
           username:
           <input
+            id="username"
             style={{ marginLeft: '5px' }}
             value={username}
             onChange={handleUsernameChange}
@@ -21,6 +22,7 @@ const LoginForm = ({
         <div>
           password:
           <input
+            id="password"
             style={{ marginLeft: '5px' }}
             type="password"
             value={password}
@@ -28,7 +30,7 @@ const LoginForm = ({
           />
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-          <button type="submit">login</button>
+          <button id="login-button" type="submit">login</button>
         </div>
       </form>
     </div>
