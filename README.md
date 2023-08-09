@@ -4,6 +4,8 @@
 
 A MERN stack app displaying a list of tech blogs.
 
+![homepage screenshot](https://github.com/westonludeke/bloglist/blob/main/frontend/public/homepage1.png?raw=true)
+
 ### Details
 
 The project contains a RESTful back end in Express for creating, deleting, reading, and updating the list of blogs. Certain endpoints are limited to authenticated users only. Unit and integration tests were written using Jest and SuperTest.
