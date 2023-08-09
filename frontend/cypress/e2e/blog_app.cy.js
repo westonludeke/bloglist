@@ -62,7 +62,7 @@ describe('Blog app', function() {
       cy.get('#author').type('Hello World')
       cy.get('#url').type('cypress.io')
       cy.contains('Add Blog').click()
-      cy.contains('#delete').click()
+      cy.contains('delete').click()
       cy.should('not.contain', 'a blog created by cypress')
     })
 
