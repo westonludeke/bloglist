@@ -5,6 +5,9 @@
 A MERN stack app displaying a list of tech blogs.
 
 <img src="https://github.com/westonludeke/bloglist/blob/main/frontend/public/homepage1.png?raw=true" width="500">
+```
+homepage showing site before sign in
+```
 
 ### Details
 
@@ -12,7 +15,7 @@ The project contains a RESTful back end in Express for creating, deleting, readi
 
 The frontend is build using React. Logged in users can add new blogs to the site or delete existing blogs. Unit testing of React components was done using Jest and React Testing Library. End-to-end testing of the full stack application was done using Cypress.
 
-### Stack
+### More Stack Details
 
 * HTTP requests using Axios
 * REST APIs using Node.js and Express
@@ -26,10 +29,13 @@ The frontend is build using React. Logged in users can add new blogs to the site
 
 ### More Info
 
-* This is the second MERN stack app I've built and is by far the most comprehensive full-stack app I've ever built. The previous MERN app I built, a phonebook app, was created during the [FullStackOpen](https://fullstackopen.com/en/) program as I learned Mongo, Express, React, and Node. This app was built as a continuation upon the knowledge learned from the first app.
+* This is the second MERN stack app I've built and is by far the most comprehensive full-stack app I've ever built. The previous MERN app I built, a [phonebook app](https://github.com/westonludeke/phonebook), was created during the [FullStackOpen](https://fullstackopen.com/en/) program as I learned Mongo, Express, React, and Node. This app was built as a continuation upon the knowledge learned from the first app, in addition to learning a few new things related to full-stack MERN development.
 
 * The [app is hosted on Render](https://bloglist-fvx5.onrender.com/). Note: because the site is running on the free versions of Mongo Atlas and Render, the site may be initially slow to load. 
 
 * The CSS is minimal as my focus wasn't on design or layout.
 
 <img src="https://github.com/westonludeke/bloglist/blob/main/frontend/public/homepage2.png?raw=true" width="500">
+```
+homepage after login and displaying add new blog form
+```
