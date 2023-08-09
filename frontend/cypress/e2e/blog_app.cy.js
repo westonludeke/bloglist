@@ -50,10 +50,20 @@ describe('Blog app', function() {
     it('a new blog can be created', function() {
       cy.contains('new blog').click()
       cy.get('#title').type('a blog created by cypress')
-      cy.get('#author').type('cypress mccypress')
+      cy.get('#author').type('Hello World')
       cy.get('#url').type('cypress.io')
       cy.contains('Add Blog').click()
       cy.contains('a blog created by cypress')
+    })
+
+    it('user can delete a blog', function() {
+      cy.contains('new blog').click()
+      cy.get('#title').type('a blog created by cypress')
+      cy.get('#author').type('Hello World')
+      cy.get('#url').type('cypress.io')
+      cy.contains('Add Blog').click()
+      cy.contains('#delete').click()
+      cy.should('not.contain', 'a blog created by cypress')
     })
 
     describe('and a blog exists', function () {

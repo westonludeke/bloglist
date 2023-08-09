@@ -14,7 +14,7 @@ const Blog = ({ blog, user, handleDelete }) => {
         <a href={formatUrl(blog.url)}>{blog.url}</a><br />
         Likes: {blog.likes}<br />
         { user && (
-          <button onClick={() => handleDelete(blog.id)}>delete</button>
+          <button id="delete" onClick={() => handleDelete(blog.id)}>delete</button>
         )}
       </p>
     </ul>
