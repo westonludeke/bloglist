@@ -4,7 +4,7 @@
 
 A MERN stack app displaying a list of tech blogs.
 
-![homepage screenshot](https://github.com/westonludeke/bloglist/blob/main/frontend/public/homepage1.png?raw=true | width=250)
+<img src="https://github.com/westonludeke/bloglist/blob/main/frontend/public/homepage1.png?raw=true" width="500">
 
 ### Details
 
@@ -33,3 +33,5 @@ The frontend is build using React. Logged in users can add new blogs to the site
 * The [app is hosted on Render](https://bloglist-fvx5.onrender.com/). Note: because the site is running on the free versions of Mongo Atlas and Render, the site may be initially slow to load. 
 
 * The CSS is minimal as my focus wasn't on design or layout.
+
+<img src="https://github.com/westonludeke/bloglist/blob/main/frontend/public/homepage2.png?raw=true" width="500">
