@@ -4,7 +4,7 @@
 
 A MERN stack app displaying a list of tech blogs.
 
-![homepage screenshot](https://github.com/westonludeke/bloglist/blob/main/frontend/public/homepage1.png?raw=true)
+![homepage screenshot](https://github.com/westonludeke/bloglist/blob/main/frontend/public/homepage1.png?raw=true | width=250)
 
 ### Details
 
