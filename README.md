@@ -26,9 +26,7 @@ The frontend is build using React. Logged in users can add new blogs to the site
 
 ### More Info
 
-* This is the second MERN stack app I've built and is by far the most comprehensive full-stack app I've every build. The previous MERN app I built, a phonebook app, was created during the [FullStackOpen](https://fullstackopen.com/en/) program as I learned Mongo, Express, React, and Node.
-
-* This app was built as a continuation upon the knowledge learned from the first app.
+* This is the second MERN stack app I've built and is by far the most comprehensive full-stack app I've ever built. The previous MERN app I built, a phonebook app, was created during the [FullStackOpen](https://fullstackopen.com/en/) program as I learned Mongo, Express, React, and Node. This app was built as a continuation upon the knowledge learned from the first app.
 
 * The [app is hosted on Render](https://bloglist-fvx5.onrender.com/). Note: because the site is running on the free versions of Mongo Atlas and Render, the site may be initially slow to load. 
 
