@@ -5,9 +5,6 @@
 A MERN stack app displaying a list of tech blogs.
 
 <img src="https://github.com/westonludeke/bloglist/blob/main/frontend/public/homepage1.png?raw=true" width="500">
-```
-homepage showing site before sign in
-```
 
 ### Details
 
@@ -36,6 +33,3 @@ The frontend is build using React. Logged in users can add new blogs to the site
 * The CSS is minimal as my focus wasn't on design or layout.
 
 <img src="https://github.com/westonludeke/bloglist/blob/main/frontend/public/homepage2.png?raw=true" width="500">
-```
-homepage after login and displaying add new blog form
-```
