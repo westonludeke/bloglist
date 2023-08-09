@@ -8,7 +8,7 @@ A MERN stack app displaying a list of tech blogs.
 
 The project contains a RESTful back end in Express for creating, deleting, reading, and updating the list of blogs. Certain endpoints are limited to authenticated users only. Unit and integration tests were written using Jest and SuperTest.
 
-The frontend is build using React. Logged in users can add new blogs to the site or delete existing blog. Unit testing of React components was done using Jest and React Testing Library. End-to-End testing of the full stack application was done using Cypress.
+The frontend is build using React. Logged in users can add new blogs to the site or delete existing blogs. Unit testing of React components was done using Jest and React Testing Library. End-to-end testing of the full stack application was done using Cypress.
 
 ### Stack
 
@@ -21,7 +21,6 @@ The frontend is build using React. Logged in users can add new blogs to the site
 * User authentication to frontend using JSON web tokens
 * Password hasing using bcrypt
 * End-to-end testing of the full stack using Cypress
-
 
 ### More Info
 
