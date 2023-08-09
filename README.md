@@ -2,32 +2,33 @@
 
 ### About
 
-A MERN stack app displaying a list of tech websites.
+A MERN stack app displaying a list of tech blogs.
 
 ### Details
 
-This is the second MERN stack app I've built and is by far the most comprehensive full-stack app I've every build. The previous MERN app I built, a phonebook app, was created during the [FullStackOpen](https://fullstackopen.com/en/) program, which had a lot of hand-holding as I learned Mongo, Express, React, and Node.
+The project contains a RESTful back end in Express for creating, deleting, reading, and updating the list of blogs. Certain endpoints are limited to authenticated users only. Unit and integration tests were written using Jest and SuperTest.
 
-This app was built with zero hand-holding, as I wanted to build a new app from scratch to ensure that I had a full comprehension of all of the steps involved with creating a new MERN app and deploying it to Render. 
+The frontend is build using React. Logged in users can add new blogs to the site or delete existing blog. Unit testing of React components was done using Jest and React Testing Library. End-to-End testing of the full stack application was done using Cypress.
 
-### Features
+### Stack
 
-* The [app is hosted on Render](https://bloglist-fvx5.onrender.com/). Note: because the site is running on the free versions of Mongo Atlas and Render, the site may be initially slow to load.
+* HTTP requests using Axios
+* REST APIs using Node.js and Express
+* MongoDB with Mongoose
+* Express middleware for logging, error handling, etc.
+* ESLint
+* Unit testing and integration testing Express backend with Jest and SuperTest
+* User authentication to frontend using JSON web tokens
+* Password hasing using bcrypt
+* End-to-end testing of the full stack using Cypress
 
-* The actual functionality of the app is intentionally very limited, as the homepage only allows for adding new blogs to the list.
 
-* The backend's `tests` directory contains the API's tests, making HTTP requests and inspects the database with Mongoose. 
+### More Info
 
-* The CSS is minimal as my focus wasn't on design or layout, but instead learning the MERN stack.
+* This is the second MERN stack app I've built and is by far the most comprehensive full-stack app I've every build. The previous MERN app I built, a phonebook app, was created during the [FullStackOpen](https://fullstackopen.com/en/) program as I learned Mongo, Express, React, and Node.
 
-* User passwords are encrypted with bcrypt.
+* This app was built as a continuation upon the knowledge learned from the first app.
 
-### Todos
+* The [app is hosted on Render](https://bloglist-fvx5.onrender.com/). Note: because the site is running on the free versions of Mongo Atlas and Render, the site may be initially slow to load. 
 
-* Add an option for `likes` to the `Add a New Blog` section in the UI.
-
-* ~~Refactor the application into separate modules.~~ [Done!]
-
-* ~~Add the ability to delete blogs from the list to the UI.~~ [Done!]
-
-* ~~Fix CSS display issues~~ [Done!]
+* The CSS is minimal as my focus wasn't on design or layout.
